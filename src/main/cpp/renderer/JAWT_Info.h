@@ -5,7 +5,7 @@
 class JAWT_Info 
 {
 private:
-    JAWT awt;
+    JAWT awt{};
     JAWT_DrawingSurface* ds;
     JAWT_DrawingSurfaceInfo* dsi;
     JAWT_Win32DrawingSurfaceInfo* dsi_win;
@@ -22,8 +22,10 @@ public:
         assert(result != JNI_FALSE);
         // Get the drawing surface
         ds = awt.GetDrawingSurface(env, panel);
-        if(ds == NULL)
+        if(ds == nullptr){
             return;
+        }
+
         // Lock the drawing surface
         lock = ds->Lock(ds);
         assert((lock & JAWT_LOCK_ERROR) == 0);
@@ -37,21 +39,21 @@ public:
     
     HWND getHWND()
     {
-        if(dsi_win == NULL)
-            return NULL;
+        if(dsi_win == nullptr)
+            return nullptr;
         return dsi_win->hwnd;
     }
 
     HDC getHDC()
     {
-        if(dsi_win == NULL)
-            return NULL;
+        if(dsi_win == nullptr)
+            return nullptr;
         return dsi_win->hdc;
     }
 
     virtual ~JAWT_Info()
     {
-        if(ds != NULL)
+        if(ds != nullptr)
         {
             // Free the drawing surface info
             ds->FreeDrawingSurfaceInfo(dsi);

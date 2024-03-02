@@ -2,11 +2,12 @@
 #include <jni.h>
 /* Header for class MyWindow */
 
-#ifndef _Included_MyWindow
-#define _Included_MyWindow
+#pragma once
+
 #ifdef __cplusplus
 extern "C" {
 #endif
+
 /* Inaccessible static: LOCK */
 /* Inaccessible static: dbg */
 /* Inaccessible static: isInc */
@@ -64,5 +65,4 @@ JNIEXPORT void JNICALL Java_MyWindow_cleanupOpenGL
 
 #ifdef __cplusplus
 }
-#endif
 #endif

@@ -19,11 +19,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
-import javax.swing.BoxLayout
-import javax.swing.JPanel
 
 fun main() {
     // Load the library that contains the paint code.
@@ -60,17 +59,19 @@ fun MyApp(
 
 
 @Composable
-fun NativeSwingPanel() {
-    SwingPanel(
-        background = Color.White,
-        modifier = Modifier.fillMaxSize(),
-        factory = {
-            JPanel().apply {
-                setLayout(BoxLayout(this, BoxLayout.Y_AXIS))
-                add(MyWindow())
+fun NativeSwingPanel(modifier: Modifier = Modifier) {
+    Column(modifier = modifier.fillMaxWidth()) {
+        Text("compose-opengl", modifier = modifier.fillMaxWidth().height(32.dp), textAlign = TextAlign.Center)
+
+        SwingPanel(
+            background = Color.White,
+            modifier = Modifier.fillMaxSize(),
+            factory = {
+                MyWindow()
             }
-        }
-    )
+        )
+    }
+
 }
 
 @Composable
